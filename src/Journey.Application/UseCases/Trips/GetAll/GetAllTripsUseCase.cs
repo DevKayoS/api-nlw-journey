@@ -15,12 +15,12 @@ namespace Journey.Application.UseCases.Trips.GetAll
 
             return new ResponseTripsJson
             {
-                Trips = trips.Select(trip => new ResponseShortTripJson
+                Trips = trips.Select(trips => new ResponseShortTripJson
                 {
-                    Id = trip.Id,
-                    EndDate = trip.EndDate,
-                    Name = trip.Name,
-                    StartDate = trip.StartDate
+                    Id = trips.Id,
+                    EndDate = trips.EndDate,
+                    Name = trips.Name,
+                    StartDate = trips.StartDate
                 }).ToList()
             };
         }

@@ -79,11 +79,29 @@ namespace Journey.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro desconhecido.
+        /// </summary>
+        public static string INTERNAL_SERVER_ERROR {
+            get {
+                return ResourceManager.GetString("INTERNAL_SERVER_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The name cannot be empty..
         /// </summary>
         public static string NAME_EMPTY {
             get {
                 return ResourceManager.GetString("NAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Trip not found.
+        /// </summary>
+        public static string TRIP_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("TRIP_NOT_FOUND", resourceCulture);
             }
         }
     }

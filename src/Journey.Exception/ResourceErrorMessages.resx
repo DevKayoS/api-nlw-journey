@@ -123,7 +123,13 @@
   <data name="END_DATA_TRIP_MUST_BE_LATER_START_DATE" xml:space="preserve">
     <value>The end date of the trip must be equal to or later than the Start Date.</value>
   </data>
+  <data name="INTERNAL_SERVER_ERROR" xml:space="preserve">
+    <value>Erro desconhecido</value>
+  </data>
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>The name cannot be empty.</value>
+  </data>
+  <data name="TRIP_NOT_FOUND" xml:space="preserve">
+    <value>Trip not found</value>
   </data>
 </root>

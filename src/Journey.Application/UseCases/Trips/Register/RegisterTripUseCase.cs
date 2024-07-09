@@ -12,6 +12,7 @@ namespace Journey.Application.UseCases.Trips.Register
     {
         public ResponseShortTripJson Execute(RequestRegisterTripJson request)
         {
+
             Validate(request);
 
             var dbContext = new JourneyDbContext();
@@ -30,7 +31,7 @@ namespace Journey.Application.UseCases.Trips.Register
             return new ResponseShortTripJson
             {
                 EndDate = entity.EndDate,
-                StartDate =  entity.StartDate,
+                StartDate = entity.StartDate,
                 Name = entity.Name,
                 Id = entity.Id
             };
@@ -40,19 +41,15 @@ namespace Journey.Application.UseCases.Trips.Register
         //fazendo as validacoes
         private void Validate(RequestRegisterTripJson request)
         {
-            if (string.IsNullOrWhiteSpace(request.Name))
-            {
-                throw new JourneyException(ResourceErrorMessages.NAME_EMPTY);
-            }
+            var validator = new RegisterTripValidator();
 
-            if(request.StartDate.Date < DateTime.UtcNow.Date)
-            {
-                throw new JourneyException(ResourceErrorMessages.DATA_TRIP_MUST_BE_LATER_THAN_TODAY);
-            }
+            var result = validator.Validate(request);
 
-            if (request.EndDate.Date < request.StartDate.Date)
+            if(result.IsValid == false)
             {
-                throw new JourneyException(ResourceErrorMessages.END_DATA_TRIP_MUST_BE_LATER_START_DATE);
+               var errorMessages = result.Errors.Select(error => error.ErrorMessage).ToList();
+
+                throw new ErrorOnValidationException(errorMessages);
             }
         }
     }
