@@ -17,23 +17,18 @@ namespace Journey.Application.UseCases.Activities.Register
 
             var trip = dbContext
                 .Trips
-                .Include(trip => trip.Activities)
                 .FirstOrDefault(trip => trip.Id == tripId);
-
-
-
 
             Validate(trip, request);
 
             var entitiy = new Activity
             {
                 Name = request.Name,
-                Date = DateTime.Now
+                Date = DateTime.Now,
+                TripId = tripId,
             };
 
-            trip!.Activities.Add(entitiy);
-
-            dbContext.Trips.Update(trip);
+            dbContext.Activities.Add(entitiy);
             dbContext.SaveChanges();
 
             return new ResponseActivityJson
